@@ -1,0 +1,355 @@
+html {
+  font-size: 16px;
+}
+
+.App {
+  /* text-align: center; */
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/*************MatchUp Title*****************/
+
+.cs-champion-list-icon {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  height: 80%;
+  border-radius: 0%;    
+  width: auto;
+  border: 2px solid black;  
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+
+.cs-matchup-header {
+  position: relative;
+}
+
+.cs-matchup-versus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-51%);
+  z-index: 999;
+  text-align: center;
+  font-size: .875rem;
+}
+
+.cs-champion-profile {
+  text-align: center;
+}
+
+.cs-champion-profile-icon {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-bottom: .375rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-position: center;
+  background-size: 120%;
+}
+
+.cs-matchup-tag {
+  margin-right: .375rem;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  transform: translateY(-2px);
+  font-size: .75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/*************Comment*****************/
+
+.cs-comment-sm {
+  margin-bottom: .5rem;
+  padding-top: 1rem;
+  padding-bottom: .5rem;
+  padding-right: 1rem;
+  background-color: #f7f7f9;
+}
+
+.cs-comment-sm .cs-comment-score {
+  width: 3rem;
+  margin-top: -.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.cs-comment-score {
+  float: left;
+}
+
+.cs-comment-sm .cs-comment-content {
+  padding-left: 3rem;
+}
+
+.cs-comment-upvote {
+  margin-bottom: -.25rem;
+}
+
+.cs-comment-total {
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #404446;
+}
+
+.cs-comment-downvote {
+  margin-top: -.25rem;
+}
+
+.cs-comment-vote {
+  color: #666c70;
+}
+
+.cs-comment-title {
+  font-size: 1rem;
+  margin-bottom: .5rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.cs-comment-sm .cs-comment-metadata {
+  font-size: .75rem;
+}
+
+.cs-comment-sm .cs-comment-text {
+  font-size: .875rem;
+}
+
+.cs-comment-text {
+  margin-bottom: .25rem;
+  overflow-wrap: break-word;  
+  word-break: break-word;
+}
+
+.cs-muted-link {
+  color: #777;
+}
+
+.cs-champion-view-all {
+  margin-bottom: 1.5rem;
+}
+
+.cs-comment-vote-non-active {
+  cursor: pointer;
+}
+
+.cs-comment-vote-active {
+  color: #0e0e0f !important;
+}
+
+.cs-comment-vote {
+  color: #666c70;
+}
+
+.cs-comment-children {
+  margin-top: 1.5rem;
+  border-left: 1px dotted #dfdfe1;
+}
+
+.cs-comment-sm .cs-comment-score {
+  width: 3rem;
+  margin-top: -.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.cs-comment-score {
+  float: left;
+}
+
+.cs-comment-sm .cs-comment-content {
+  padding-left: 3rem;
+}
+
+.cs-comment-child .cs-comment-upvote {
+  margin-bottom: -.375rem;
+}
+
+.cs-comment-child .cs-comment-metadata {
+  margin-bottom: .25rem;
+}
+
+.cs-comment-sm .cs-comment-metadata {
+  font-size: .75rem;
+}
+
+.cs-comment-metadata {
+  color: #777;
+}
+
+.cs-comment-child .cs-comment-author {
+  margin-right: .5rem;
+}
+
+/*************Counter Tip*****************/
+.cs-counter-tip:not(:last-child) {
+  border-bottom: 1px solid #e9e9ee;
+}
+
+.cs-counter-tip {
+  margin-bottom: .5rem;
+  padding-top: .75rem;
+  padding-bottom: .5rem;
+}
+
+.cs-counter-tip-score-alt {
+  float: left;
+  width: 4rem;
+  margin-top: -.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.cs-counter-tip-upvote-alt {
+  margin-bottom: -.25rem;
+}
+
+.cs-counter-tip-total-alt {
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #404446;
+}
+
+.cs-counter-tip-downvote-alt {
+  margin-top: -.25rem;
+}
+
+.cs-counter-tip-content {
+  padding-left: 4rem;
+}
+
+.cs-counter-tip-text {
+  margin-bottom: .5rem;
+  font-size: .875rem;
+  overflow-wrap: break-word;  
+  word-break: break-word;
+}
+
+.cs-counter-tip-footer {
+  margin-bottom: .5rem;
+  font-size: .75rem;
+  color: #858585;
+}
+
+.cs-counter-tip-metadata {
+  float: left;
+}
+
+.cs-champion-view-all {
+  margin-bottom: 1.5rem;
+}
+
+.cs-counter-tip-vote-non-active-alt {
+  cursor: pointer;
+}
+
+.cs-counter-tip-vote-alt {
+  color: #666c70;
+}
+
+.cs-counter-tip-caret-non-active {
+  cursor: pointer;
+}
+
+.cs-counter-tip-vote-active-alt {
+  color: #0e0e0f !important;
+}
+
+/*********MatchUp List**************/
+
+.list-inline>li {
+  display: inline-block;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.cs-matchups-list {
+  margin-bottom: .5rem;
+  text-transform: none;
+}
+
+.cs-thumbnail {
+  width: 100%;
+  border-radius: 4px;
+  background-position: center;
+  background-size: 120%;
+}
+
+.cs-thumbnail-container {
+  min-width: 3rem;
+}
+
+.cs-matchup-item {
+  background-color: #f7f7f9;
+  padding: .5rem;  
+  margin-bottom: .5rem;
+}
+
+.cs-matchup-item-votes-non-active {
+  cursor: pointer;
+}
+
+.cs-matchup-item-score {
+  margin-bottom: 0;
+  float: right;
+}
+
+.cs-bg-middle {
+  background-color: #5bc0de;
+}
+
+.cs-bg-top {
+  background-color: #f0ad4e;
+}
+
+.cs-bg-general {
+  background-color: #0275d8;
+}
+
+.cs-bg-jungle {
+  background-color: #10dfa4;
+}
+
+.cs-bg-bottom {
+  background-color: #d4cd76;
+}
+
+.cs-matchup-item-name {
+  margin-bottom: 0;
+}
+
+.cs-matchup-link {
+  display: table;
+  color: inherit;
+  text-decoration: none;
+}
