@@ -88,7 +88,7 @@ handleSubmit = (e) => {
     e.preventDefault();
   
 
-    this.props.history.push(`/champ/${this.state.name}`)
+    this.props.history.push(`/champions/${this.state.name}`)
 
   }
 render() {
@@ -106,7 +106,7 @@ else {
 }
  
 
-    let searchMake = ["Ahri","zed","Malphite","Talon", "Velkoz","Jax"];
+    let searchMake = ["Lulu","Vayne","Lucian","Lux", "Trundle","Jax"];
 
     let names = searchMake.map((name, i) => {
       return (
@@ -152,9 +152,9 @@ else {
 
          )}
           </ul>
-
+        <h1> text </h1>
                 <form  onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0" id="crap">
-                 <div className="col-3">
+                 <div className="col-6">
                 <select className="form-control"
                     value={this.state.name}
                     onChange={(e)=>this.setState({name: e.target.value})}
@@ -163,7 +163,7 @@ else {
                        {names}
                 </select>
               </div>
-          <div className="col-3">
+          <div className="col-6n">
                   <button 
                   type="submit"  id="ff" className="btn btn-success btn-block">Search</button>
               </div>

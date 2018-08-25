@@ -12,18 +12,32 @@ import {ChampsRef, CommentsRef, timeRef} from '../reference';
 
 import {getsinglechamp} from '../../actions/champs';
 class ChampionMatchUpList extends Component {
-  constructor(props) {
+   constructor(props) {
     super(props);
-  }
-   state = {
-        comments: [],
+ this.handleShowMore = this.handleShowMore.bind(this)
+      this.state = {
+        citrus: this.props.champ.weak.slice(-3),
+         comments: [],
          vote: 0,
 
         champ_id: "",
         loading: true,
         email: "",
        hasVisitedBefore: "true"
-    };
+       
+  }
+
+}
+
+
+   
+
+  handleShowMore() {
+    this.setState({
+      
+        citrus : this.props.champ.weak.slice(-8)
+    })
+  }
 
     downvotePost(key, text, vote) {
     // alert(id);
@@ -95,6 +109,8 @@ const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
     }
 
   render() {
+
+   
      const {dispatch, loading} = this.props;
         const {comments, ChampsLoading} = this.state;
         const orderedchamps = comments;
@@ -160,14 +176,13 @@ const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
           </div>
           <div class="cs-matchups-list">
             {this.props.champ.weak != null ?
-              this.props.champ.weak.map((weakChamp, index)=>                               
+              this.state.citrus.map((weakChamp, index)=>                               
                 (weakChamp != null ?
                 <MatchUpItem key={index} champName={this.props.champ.name} matchID={weakChamp.matchID} matchupType={weakChamp.matchType} upVote={weakChamp.upVote} downVote={weakChamp.downVote} />              
                 : null)
               ) : null}
           </div>
-          <div class="cs-champion-view-all">
-            <a class="btn btn-secondary btn-sm btn-block" href="">View more</a>
+          <div class="cs-champion-view-all"><button class="btn btn-secondary btn-sm btn-block"   onClick={this.handleShowMore} >View more</button>
           </div>
         </div>
       </div>

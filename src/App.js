@@ -73,7 +73,7 @@ class App extends Component {
               <Route path="/matchup" component={MatchUp} />              
 
               {/* <Route exact path="/MatchUp/:id/weakid" component={MatchUp} />
-              <Route exact path='/champ/:name' component={Searchresults} /> */}
+              <Route exact path='/champions/:name' component={Champion} /> */}
 
               <Route exact path="/login" component={Login} />
                     <Route exact path="/signup" component={SignUp} />

@@ -1,179 +1,44 @@
-import React, {Component} from 'react'
-import axios from 'axios'
-import {Upvote} from 'react-upvote';
-import {arrowUp} from 'react-icons-kit/fa/arrowUp';
-import {chevronDown} from 'react-icons-kit/fa/chevronDown'
-import {chevronUp} from 'react-icons-kit/fa/chevronUp'
-import { Icon } from 'react-icons-kit';
-import app from "../../config/dev";
-import {Link} from 'react-router-dom';
-import {ChampsRef, CommentsRef, timeRef} from '../reference';
-import {connect} from 'react-redux';
-import {getsinglechamp} from '../../actions/champs';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  counterTip: PropTypes.string
+};
+
+const defaultProps = {
+  counterTip: "How to beat (or survive) lane as Teemo: Just put 3 points into your q early on and stay back, teemos q has a range of 580 whilst pantheons abilities have a range of 500 so just q whenever you can. Get Liandries as fast as you can and stay back in lane and most importantly dont let yourself be pushed under tower and in case of both lanes winning or not being in need of ganks beg your jungler for ganks good luck"
+};
+
 class MatchUpCounterTip extends Component {
+  render() {
+    return (
+      <div>
+        <div class="cs-counter-tip">
+          <div class="cs-counter-tip-score-alt">
+            <div class="cs-counter-tip-vote-alt cs-counter-tip-upvote-alt">
+              <i class="fa fa-fw fa-caret-up cs-counter-tip-caret cs-counter-tip-caret-non-active cs-counter-tip-vote-alt cs-counter-tip-vote-non-active-alt"></i>
+            </div>
+            <p class="cs-counter-tip-total-alt jq-counter-tip-57b4f5b5aabedb001bdcd5f3">6</p>
+            <div class="cs-counter-tip-vote-alt cs-counter-tip-downvote-alt">
+              <i class="fa fa-fw fa-caret-down cs-counter-tip-caret cs-counter-tip-caret-non-active cs-counter-tip-vote-alt cs-counter-tip-vote-non-active-alt"></i>
+            </div>
+          </div>
+          <div class="cs-counter-tip-content">
+            <div>
+              <p class="cs-counter-tip-text">{this.props.counterTip}</p>
+              <div class="cs-counter-tip-footer clearfix">
+                <p class="cs-comment-metadata">by <span class="text-primary">Varph</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    state = {
-        comments: [],
-         vote: 0,
-
-        champ_id: "",
-        loading: true,
-        email: "",
-       hasVisitedBefore: ''
-    }
-
-    downvotePost(key, text, vote) {
-    // alert(id);
-    // CommentsRef.child(id).transaction(function(Comments) {
-    //   if (Comments) {
-    //     Comments.vote++;
-    //   }
-    //  console.log('cc',Comments);
-    //   return Comments;
-    // });
-    
-    vote--;
-    CommentsRef.child(key).update({'vote' : vote});
+      </div>
+    );
   }
-
-upvotePost(key, text, vote) {
-    // alert(id);
-    // CommentsRef.child(id).transaction(function(Comments) {
-    //   if (Comments) {
-    //     Comments.vote++;
-    //   }
-    //  console.log('cc',Comments);
-    //   return Comments;
-    // });
-    
-    vote++;
-    CommentsRef.child(key).update({'vote' : vote});
-  }
-    componentWillMount() {
-        const {dispatch, match} = this.props;
-        dispatch(getsinglechamp(this.props.id));
-        console.log(this.props);
-
-
-       app.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    // ...
-  } else {
-
-    
-    // User is signed out.
-    // ...
-  }
-  // ...
-});
-    }
-
-    componentDidMount() {
-
-        const champ_id = this.props.id;
-        CommentsRef.orderByChild('champ_id').equalTo(`${champ_id}`).on('value', (snap) => {
-            const tasks = [];
-            let comments = []
-            snap.forEach(child => {
-                comments.push({...child.val(), key: child.key});
-            });
-            this.setState({comments: comments, Loading: false});
-        });
-const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
-
-  // Check if the user has visited the site (component) before.
-  if (!hasVisitedBefore) {
-    // If not, set the component state (or dispatch an action if you need)
-    // Also set the localStorage so it's globally accessible.
-    this.setState({ hasVisitedBefore: false });
-    localStorage.setItem('hasVisitedBefore', true);
 }
 
-    }
+MatchUpCounterTip.propTypes = propTypes;
+MatchUpCounterTip.defaultProps = defaultProps;
 
-    render() {
-
-
-        const {dispatch, loading} = this.props;
-        const {comments, ChampsLoading} = this.state;
-        const orderedchamps = comments;
-
-
-        let commentList;
-
-        if (ChampsLoading) {
-            commentList = <div className="TaskList-empty">Loading...</div>;
-
-        }
-        else if
-        (comments.length) {
-
-            commentList = (
-                <ul className="TaskList">
-                    {comments.map(comment => (
-
-                        <div className="row">
-                        <div className="col-lg-6">
-                        <br></br> <br></br> <br></br>
-                   
-                        <div className="cs-counter-tips-list">
-                        <div className="cs-counter-tip">
-                      
-                                     {this.state.hasVisitedBefore
-          ? 'Welcome back!'
-          : 'Welcome for the first time!'}
-                                 <button id="f" onClick={()=>this.upvotePost(comment.key, comment.text, comment.vote)}> <Icon  icon={chevronUp} /> </button>
-                                     <div id="col" className="col-lg-6"> {comment.vote} </div>
-                                 <button id="f" onClick={()=>this.downvotePost(comment.key, comment.text, comment.vote)}> <Icon  icon={chevronDown} /> </button>
-                              <div><p className="cs-counter-tip-text">
-                                      {comment.text}  </p> </div>
-                                     
-
-                                    
-
-                        
-                              </div></div>                          </div></div>
-                      
-                    ))}
-
-                </ul>
-            );
-        }
-        return (
-                         <div className="container">
-  
-
-    
-    <h1>Counter Tips</h1>
-    
-    <div className="brace"> </div>
-    
-   
-                
-                <p> {commentList} </p>
-
-            
-               
-  </div> 
-
-                
-        );
-    }
-
-
-}
-
-
-const mapStateToProps = (state) => {
-    console.log('champs', state.champs);
-    console.log(state.loading);
-    return {
-        champ: state.champs.champ,
-        loading: state.loading
-    }
-}
-
-export default connect(mapStateToProps, null)(MatchUpCounterTip)
+export default MatchUpCounterTip;

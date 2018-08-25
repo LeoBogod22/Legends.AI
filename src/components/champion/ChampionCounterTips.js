@@ -48,8 +48,8 @@ class ChampionCounterTips extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="col">
+      <div className="container3">
+        <div className="co3l">
       
         </div>
       </div>

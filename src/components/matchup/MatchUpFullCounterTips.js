@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MatchUpCounterTip from './MatchUpCounterTip';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-
+import * as actions from '../../actions/champs';
 class MatchUpFullCounterTips extends Component {
   constructor(props, context) {
     super(props, context);
