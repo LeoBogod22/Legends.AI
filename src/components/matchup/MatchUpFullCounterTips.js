@@ -72,7 +72,7 @@ class MatchUpFullCounterTips extends Component {
       snap.forEach(child => {
         tipList.push({ ...child.val(), key: child.key });
       });
-      this.setState({ tipList: tipList});      
+      this.setState({ tipList: tipList, loading:false});      
     });
   }
 
