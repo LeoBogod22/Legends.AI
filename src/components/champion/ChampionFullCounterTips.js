@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CounterTip from '../common/CounterTip';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { ChampsRef, CounterTipsRef, timeRef } from '../reference';
 import app from "../../config/dev";
 
-class MatchUpFullCounterTips extends Component {
+class ChampionFullCounterTips extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -19,15 +18,23 @@ class MatchUpFullCounterTips extends Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    this.getParentID(nextProps)
+    this.getCounterTips(nextProps)
   }
 
   componentWillMount() {
-    this.getParentID(this.props)
+    this.getCounterTips(this.props)
   }
 
-  getParentID(props) {
-    let currentComponent = this;    
+  getCounterTips() {
+    //Get CounterTipList
+    const champ_id = this.props.champ.id;
+    CounterTipsRef.orderByChild('parent_id').equalTo(`${champ_id}`).on('value', (snap) => {      
+      let tipList = []
+      snap.forEach(child => {
+        tipList.push({ ...child.val(), key: child.key });
+      });
+      this.setState({ tipList: tipList, loading: false });
+    });
 
     //Check Login
     app.auth().onAuthStateChanged((user) => {
@@ -45,35 +52,6 @@ class MatchUpFullCounterTips extends Component {
       }
     });
 
-    //Get Matchup ID    
-    ChampsRef.child(`${props.champ.id}/matchup`).orderByChild('champ_id').equalTo(`${props.matchchamp.id}`).on('value', (snapshot) => {                
-      this.state.tipList = [];
-      this.state.parentID = "";
-      var count = 0;      
-      snapshot.forEach(child => {
-        if (count == 0) {                
-          currentComponent.setState({
-            parentID: child.key
-          });
-          currentComponent.getCounterTips(child.key);
-        }
-        count++;
-      });
-
-      this.setState({ loading: false });
-    });
-  }
-
-  componentWillMount(){
-    //Get CounterTipList        
-    CounterTipsRef.orderByChild('matchup_id').equalTo(`${this.props.matchchamp.id}`).on('value', (snap) => {            
-      let tipList = []
-      
-      snap.forEach(child => {
-        tipList.push({ ...child.val(), key: child.key });
-      });
-      this.setState({ tipList: tipList});      
-    });
   }
 
   render() {
@@ -141,4 +119,4 @@ const mapStateToProps = (state) => {
     matchchamp: state.champs.matchchamp
   }
 }
-export default connect(mapStateToProps, null)(MatchUpFullCounterTips);
+export default connect(mapStateToProps, null)(ChampionFullCounterTips);

@@ -3,22 +3,25 @@ import ChampionTitle from './ChampionTitle'
 import ChampionContent from './ChampionContent'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
+import ChampionFullCounterTips from './ChampionFullCounterTips'
 
 class Champion extends Component {
-      
+
   render() {
     return (
-
       <div className="container">
-      <h1> hfdfasdfdf</h1>
         <div className="row">
-          <ChampionTitle/>
+          <ChampionTitle />
         </div>
         <div className="col">
           <hr />
         </div>
         <div className="row">
-          <ChampionContent/>
+          <Switch>
+            <Route exact path="/champions/:name/countertips" component={ChampionFullCounterTips} />
+            <Route exact path="/champions/:name" component={ChampionContent} />            
+          </Switch>
+          {/* <ChampionContent/> */}
         </div>
       </div>
     );

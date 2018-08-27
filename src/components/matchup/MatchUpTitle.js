@@ -19,7 +19,7 @@ class MatchUpTitle extends Component {
           <div class="col-xs-6 col-sm-5 col-sm-offset-1 col-lg-5 col-lg-offset-1">
             <MatchupSearchDiv>
               <div class="col-sm-6 hidden-xs-down">
-                <SearchBar />
+                <SearchBar isMatchup={true} isMatchChampion={false}/>
               </div>
               <div class="col-sm-6">               
                 <UserAvatar isYou={true} championID={this.props.champ.id} championName={this.props.champ.name} imgAvatar={this.props.champ.img}/>
@@ -32,7 +32,7 @@ class MatchUpTitle extends Component {
                 <UserAvatar isYou={false} championID={this.props.matchchamp.id} championName={this.props.matchchamp.name} imgAvatar={this.props.matchchamp.img}/>
               </div>
               <div class="col-sm-6 hidden-xs-down">
-                <SearchBar/>
+                <SearchBar isMatchup={true} isMatchChampion={true}/>
               </div>
             </MatchupSearchDiv>
           </div>

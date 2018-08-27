@@ -14,9 +14,9 @@ class MatchUpContent
           <div className="row" style={{ flex: 1, marginLeft: 15, marginRight:10}}>
             <MatchUpCounterTips />
           </div>
-          <div className="row" style={{ flex : 1, marginRight: 15, marginRight:10}}>            
+          {/* <div className="row" style={{ flex : 1, marginRight: 15, marginRight:10}}>            
             <MatchUpComments />            
-          </div>
+          </div> */}
         </div>
         <div className="col">
           <hr />

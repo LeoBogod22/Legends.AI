@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MatchUpItem from '../common/MatchUpItem';
 
-class ChampionMatchUpList extends Component {
+class ChampionStrong extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      matchupList: [],
       matchupLists: []
     };
 
@@ -15,8 +14,7 @@ class ChampionMatchUpList extends Component {
   }
 
   componentWillMount() {
-    if (this.props.champ.weak != null)
-      this.setState({ matchupList: this.props.champ.weak.slice(-3)});
+   
 
 
 
@@ -26,7 +24,7 @@ class ChampionMatchUpList extends Component {
 
   showMore() {
     this.setState({
-      matchupList: this.props.champ.weak.slice(-8)
+      matchupLists: this.props.champ.strong.slice(-8)
     })
   }
 
@@ -40,8 +38,8 @@ class ChampionMatchUpList extends Component {
             </div>
           </div>
           <div class="cs-matchups-list">
-          {this.props.champ.weak != null ?
-              this.state.matchupList.map((weakChamp, index) =>
+          {this.props.champ.strong != null ?
+              this.state.matchupLists.map((weakChamp, index) =>
                 (weakChamp != null ?
                   <MatchUpItem key={index} champName={this.props.champ.name} matchID={weakChamp.matchID} matchupType={weakChamp.matchType} upVote={weakChamp.upVote} downVote={weakChamp.downVote} />
                   : null)              
@@ -62,4 +60,4 @@ const mapStateToProps = (state) => {
     champ: state.champs.champ,
   }
 }
-export default connect(mapStateToProps, null)(ChampionMatchUpList);
+export default connect(mapStateToProps, null)(ChampionStrong);

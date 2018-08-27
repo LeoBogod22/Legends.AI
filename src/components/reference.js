@@ -1,5 +1,4 @@
 
-
 import * as firebase from "firebase";
 
 var config = {
@@ -16,10 +15,7 @@ firebase.initializeApp(config);
 
 const databaseRef = firebase.database().ref();
 export const ChampsRef = databaseRef.child("Champs");
-
 export const CommentsRef = databaseRef.child("Comments");
-
-
 export const CounterTipsRef = databaseRef.child("CounterTips");
 export const authRef = firebase.auth();
 export const timeRef = firebase.database.ServerValue.TIMESTAMP;

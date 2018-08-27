@@ -103,8 +103,7 @@ app.auth().onAuthStateChanged((user) => {
 
 
        <div id="f">
-       <h1> djdfdfdf </h1>
-              <div className="ChampionHeader_row_ArTlM">
+       <h1> djdfdfdf </h1><div className="row">
               <div style={{paddingRight: '0.75rem', paddingLeft: '0.75rem', flexGrow: 1}}>
               <div style={{display: 'flex', marginBottom: '1.5rem'}}>
               <div style={{flexShrink: 0, marginRight: '1rem'}}>

@@ -18,9 +18,9 @@ class MatchUp extends Component {
         </div>
         <div className="row">
           <Switch>
-            <Route path="/matchup" component={MatchUpContent} />
-            <Route path="/matchup/fullcomments" component={MatchUpFullComments} />
-            <Route path="/matchup/fullcountertips" component={MatchUpFullCounterTips} />
+            <Route exact path="/matchup/:name/:name" component={MatchUpContent} />
+            {/* <Route exact path="/matchup/:name/:name/comments" component={MatchUpFullComments} /> */}
+            <Route exact path="/matchup/:name/:name/countertips" component={MatchUpFullCounterTips} />
           </Switch>
         </div>
       </div>

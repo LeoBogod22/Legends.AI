@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import ChampionMatchUpList from './ChampionMatchUpList'
 import { connect } from 'react-redux'
 import ChampionCounterTips from './ChampionCounterTips';
-import classnames from 'classnames';
-
+import ChampionStrong from './ChampionStrong'
 class ChampionContent extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +27,7 @@ class ChampionContent extends Component {
     return (
       <div className="container">
         <div className="row">
-          <ChampionCounterTips />
+          <ChampionCounterTips />          
         </div>
         <div className="col">
           <hr />
@@ -51,7 +50,7 @@ class ChampionContent extends Component {
                   <ChampionMatchUpList status="is weak against"/>
                 </div>
                 <div class="col-lg-6">
-                  <ChampionMatchUpList status="is strong against"/>
+                  <ChampionStrong status="is strong against"/>
                 </div>
               </div>              
               <div className="row" style={{marginTop:30}}>

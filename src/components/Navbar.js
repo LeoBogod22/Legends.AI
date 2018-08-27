@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import {
   Collapse,
@@ -14,99 +11,99 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
-import { Redirect,Link } from 'react-router-dom';
+  DropdownItem
+} from 'reactstrap';
+import { Redirect, Link } from 'react-router-dom';
 import Searchresults from './searchresults';
-
-
+import SearchBar from './common/SearchBar';
 import app from "../config/dev";
-  import { Route , withRouter } from "react-router";
+import { Route, withRouter } from "react-router";
 
 class NavigatioBar extends React.Component {
 
 
-   constructor(props) {
+  constructor(props) {
     super(props);
-    this.state={
-     authenticated: false,
+    this.state = {
+      authenticated: false,
       currentUser: null,
-       redirect: false,
-        email: '',
-        name: '',
- 
-    
-      isOpen: false
-    
-   
-  }
-  this.toggle = this.toggle.bind(this);
-  this.signout = this.signout.bind(this);
+      redirect: false,
+      email: '',
+      name: '',
 
-}
+
+      isOpen: false
+
+
+    }
+    this.toggle = this.toggle.bind(this);
+    this.signout = this.signout.bind(this);
+
+  }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
 
- signout(){
-   app.auth().signOut().then((user) => {
-    this.setState ({ redirect: true })
-  
+  signout() {
+    app.auth().signOut().then((user) => {
+      this.setState({ redirect: true })
+
     })
 
-}
-
-
-
-
-
-componentWillMount() {
-
-app.auth().onAuthStateChanged((user) => {
-     
- 
-     
- 
-    if (user) {
-
-      this.setState({
-        currentUser: user,
-        email: user.email,
-        authenticated: true
-      })
-    } else {
-      this.setState({
-        currentUser: null,
-        authenticated: false
-      })
-    }
-      });
   }
-e 
-handleSubmit = (e) => {
+
+
+
+
+
+  componentWillMount() {
+
+    app.auth().onAuthStateChanged((user) => {
+
+
+
+
+      if (user) {
+
+        this.setState({
+          currentUser: user,
+          email: user.email,
+          authenticated: true
+        })
+      } else {
+        this.setState({
+          currentUser: null,
+          authenticated: false
+        })
+      }
+    });
+  }
+  e
+  handleSubmit = (e) => {
     e.preventDefault();
-  
 
-    this.props.history.push(`/champions/${this.state.name}`)
+
+    this.props.history.push(`/champ/${this.state.name}`)
 
   }
-render() {
+  render() {
 
-     let content = null;
+    let content = null;
 
-     if (content !==null ) {
-        <Searchresults name={this.state.name} />
-}
+    if (content !== null) {
+      <Searchresults name={this.state.name} />
+    }
 
-else {
+    else {
 
-  <p> h </p>
+      <p> h </p>
 
-}
- 
+    }
 
-    let searchMake = ["Lulu","Vayne","Lucian","Lux", "Trundle","Jax"];
+
+    let searchMake = ["Ahri", "zed", "Malphite", "Talon", "Velkoz", "Jax"];
 
     let names = searchMake.map((name, i) => {
       return (
@@ -118,16 +115,16 @@ else {
 
 
 
-  const { redirect } = this.state;
+    const { redirect } = this.state;
 
-     if (redirect) {
-       return <Redirect to='/signout'/>;
-     }
- const authenticated = this.state.authenticated;
+    if (redirect) {
+      return <Redirect to='/' />;
+    }
+    const authenticated = this.state.authenticated;
     return (
 
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<Link to='/'><a className="navbar-brand" href="/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW4ZhCsXYeyhMYuaOZTGVq2VkeAW9gvDcgOfdPZ1B0WbYaBvR4"/></a></Link>
+        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<Link to='/'><a className="navbar-brand" href="/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW4ZhCsXYeyhMYuaOZTGVq2VkeAW9gvDcgOfdPZ1B0WbYaBvR4" /></a></Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
@@ -136,25 +133,25 @@ else {
             <li className="nav-item active">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
                <a className="nav-link" href="#"><Link to='/champions'>Champs <span className="sr-only">(current)</span></Link></a>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
             </li>
-                 
-                   {authenticated ? ( 
 
-            <li className="nav-item">
-           <a className="nav-link" onClick={this.signout}>signout</a> 
+            {authenticated ? (
+              <li className="nav-item">&#160;&#160;&#160;&#160;
+             <Link to="/" className="nav-link" onClick={this.signout}> signout </Link> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
             </li>
-                ) : (
-            <li className="nav-item">&#160;&#160;&#160;&#160;
+
+            ) : (
+                <li className="nav-item">&#160;&#160;&#160;&#160;
              <Link to="/login" className="nav-link"> Login </Link> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-
+     
              {/* <Link to="/signup" className="nav-link"> signup </Link>  */}
-                   
-            </li>
 
-         )}
+                </li>
+
+              )}
           </ul>
-        <h1> text </h1>
-                <form  onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0" id="crap">
-                 <div className="col-6">
+
+          {/* <form  onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0" id="crap">
+                 <div className="col-3">
                 <select className="form-control"
                     value={this.state.name}
                     onChange={(e)=>this.setState({name: e.target.value})}
@@ -163,20 +160,19 @@ else {
                        {names}
                 </select>
               </div>
-          <div className="col-6n">
+          <div className="col-3">
                   <button 
                   type="submit"  id="ff" className="btn btn-success btn-block">Search</button>
               </div>
         
-      </form>
-    
+      </form> */}
+          <div className="col-3">
+            {authenticated ? app.auth().currentUser.email : null}
+          </div>
+          <SearchBar isMatchup={false} isMatchChampion={false} />
         </div>
         {content}
       </nav>
-     
-                
-
-   
     );
   }
 };

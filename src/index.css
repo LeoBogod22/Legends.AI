@@ -1,4 +1,3 @@
-
 @import '~bootstrap/dist/css/bootstrap.min.css'; 
 @import '~font-awesome/css/font-awesome.min.css';
 @import '/path/to/node_modules/react-accessible-typeahead/build/main.css';
@@ -421,7 +420,6 @@ h1 {
   margin: 0;
   padding: 0;
 }
-
 li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   
@@ -490,7 +488,7 @@ img{
 #item{
 
 
-	    margin-left: 290px;
+      margin-left: 290px;
     margin-top: -10px;
     margin-bottom: -20px;
     position: relative;
@@ -654,6 +652,12 @@ left: 150px;
     left: 80px;
     padding-right: 150px;
 } */
+#crap {
+    margin-top: -300px;
+    position: relative;
+    top: 20px;
+    left: 600px;
+}
 
 #item{
     position: relative;
@@ -726,7 +730,6 @@ left: 150px;
     -o-user-select: none;
     user-select: none;
 } */
-
 
 
 

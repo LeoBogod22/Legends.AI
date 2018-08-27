@@ -4,6 +4,7 @@ import { ChampsRef } from "../reference";
 import { connect } from 'react-redux'
 import * as actions from '../../actions/champs';
 import { Link } from 'react-router-dom';
+import app from "../../config/dev";
 
 const propTypes = {
   matchID: PropTypes.number,
@@ -46,6 +47,16 @@ class MatchUpItem extends Component {
         matchUpChamp: snapshot.val()
       });
     });
+  }
+
+  downvotePost(key, vote) {
+    vote--;
+    ChampsRef.child(key).update({ 'vote': vote });    
+  }
+
+  upvotePost(key, vote) {
+    vote++;
+    ChampsRef.child(key).update({ 'vote': vote });    
   }
 
   displayMatchUpType = () => {
