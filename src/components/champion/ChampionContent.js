@@ -3,6 +3,7 @@ import ChampionMatchUpList from './ChampionMatchUpList'
 import { connect } from 'react-redux'
 import ChampionCounterTips from './ChampionCounterTips';
 import ChampionStrong from './ChampionStrong'
+import {Tabs, Tab, TabContainer, TabContent, TabPane} from 'react-bootstrap';
 class ChampionContent extends Component {
   constructor(props) {
     super(props);
@@ -11,19 +12,16 @@ class ChampionContent extends Component {
       activeTab: 0   
     };
 
-    this.toggle = this.toggle.bind(this);
+   
   }
 
-  toggle(tab) {
-    if (this.state.activeTab != tab) {
-      this.setState({
-        activeTab: tab
-      });
-    }
-  }
-
+ 
   render() {
-    let matchTypeList = ["All", "General", "Top", "Middle", "Bottom", "Jungle"];
+    var matchTypeList = [
+  { name: 'Top', isActive: true },
+  { name: 'middle', isActive: false },
+  { name: 'Tab 3', isActive: false }
+];
     return (
       <div className="container">
         <div className="row">
@@ -34,17 +32,9 @@ class ChampionContent extends Component {
         </div>
         <div className="row">          
           <div class="cs-tabs-container">
-            <div class="cs-tabs-nav">
-              <ul class="nav nav-tabs" style={{marginLeft:30, marginRight:30}}>
-              {
-                Array(6).fill(1).map((el, index) =>
-                <li key={index} class="nav-item">
-                  <a key={index} class={"nav-link " + (this.state.activeTab == index ? "active" : "")} href="javascript:;" onClick={(e)=> this.toggle(index)}>{matchTypeList[index]}</a>
-                </li>
-              )}
-              </ul>
-            </div>
-            <div>              
+           <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+  <Tab eventKey={1} title="Tab 1">
+      <div>              
               <div className="row" style={{marginTop:20}}>                
                 <div class="col-lg-6">
                   <ChampionMatchUpList status="is weak against"/>
@@ -62,6 +52,15 @@ class ChampionContent extends Component {
                 </div>
               </div>
             </div>
+  </Tab>
+  <Tab eventKey={2} title="Tab 2">
+    Tab 2 content
+  </Tab>
+  <Tab eventKey={3} title="Tab 3">
+    Tab 3 content
+  </Tab>
+</Tabs>
+      
           </div>
         </div>
       </div>

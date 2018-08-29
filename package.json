@@ -21,6 +21,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-autocomplete": "^1.8.1",
+    "react-bootstrap": "^0.32.3",
     "react-dom": "^16.4.2",
     "react-icons-kit": "^1.1.7",
     "react-redux": "^5.0.7",
