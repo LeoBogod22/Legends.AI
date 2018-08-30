@@ -51,7 +51,7 @@ class MatchUpCounterTips extends Component {
 
   componentWillMount(){
     //Get CounterTipList        
-alert('flfl');
+alert(this.props.matchchamp.id);
     let champ_id= this.props.matchchamp.id;
 
   CounterTipsRef.orderByChild('matchup_id').equalTo(`${champ_id}`).on('value', (snap) => {           

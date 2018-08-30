@@ -42,7 +42,7 @@ alert(option);
       snap.forEach(shot => {
         champs.push({ ...shot.val(), key: shot.key });
       });
-     
+     let foo = champs.reverse;
       this.setState({ champs: champs, ChampsLoading: false });
     });
   }
@@ -53,7 +53,9 @@ alert(option);
       let champs = []
       snap.forEach(shot => {
         champs.push({ ...shot.val(), key: shot.key });
+        champs.reverse;
       });
+
       this.setState({ champs: champs, ChampsLoading: false });
     });
 
@@ -71,7 +73,7 @@ alert(option);
 
 
     const { champs, ChampsLoading } = this.state;
-    const orderedchamps = champs;
+    const orderedchamps = champs.reverse;
 
 
     let champList;
@@ -89,7 +91,7 @@ alert(option);
       champList = (
         <ul className="TaskList">
 
-          {champs.map(champ => (
+          {champs.reverse().map(champ => (
 
 
 

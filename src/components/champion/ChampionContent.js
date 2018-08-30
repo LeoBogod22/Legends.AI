@@ -3,7 +3,10 @@ import ChampionMatchUpList from './ChampionMatchUpList'
 import { connect } from 'react-redux'
 import ChampionCounterTips from './ChampionCounterTips';
 import ChampionStrong from './ChampionStrong'
-import {Tabs, Tab, TabContainer, TabContent, TabPane} from 'react-bootstrap';
+import ChampionJngl from './ChampionJngl'
+import ChampionAdc from './ChampionAdc'
+import {Tabs, Tab} from 'react-bootstrap';
+import {persistCombineReducers} from 'redux-persist'
 class ChampionContent extends Component {
   constructor(props) {
     super(props);
@@ -30,37 +33,59 @@ class ChampionContent extends Component {
         <div className="col">
           <hr />
         </div>
-        <div className="row">          
-          <div class="cs-tabs-container">
-           <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-  <Tab eventKey={1} title="Tab 1">
-      <div>              
-              <div className="row" style={{marginTop:20}}>                
-                <div class="col-lg-6">
-                  <ChampionMatchUpList status="is weak against"/>
+        <div className="row">                  
+          <div className="cs-tabs-container">
+            <ul className="nav nav-tabs">
+              <li className="tab-pane active"><a href="#tab1" data-toggle="tab">All</a></li>
+              <li><a href="#tab2" data-toggle="tab">Jungle</a></li>
+              <li><a href="#tab3" data-toggle="tab">ADC</a></li>
+            </ul>
+
+            <div className="tab-content" style={{margin:"30px"}}>
+              <div className="tab-pane active" id="tab1">
+                
+                <div className="row" style={{marginTop:20}}>                
+                  <div class="col-lg-6">
+                    <ChampionMatchUpList status="is weak against"/>
+                  </div>
+                  <div class="col-lg-6">
+                    <ChampionStrong status="is strong against"/>
+                  </div>
                 </div>
-                <div class="col-lg-6">
-                  <ChampionStrong status="is strong against"/>
-                </div>
-              </div>              
-              <div className="row" style={{marginTop:30}}>
-                <div class="col-lg-6">
-                  <ChampionMatchUpList status="goes well with"/>
-                </div>
-                <div class="col-lg-6">
-                  <ChampionMatchUpList status="goes even with"/>
+                <div className="row" style={{marginTop:30}}>
+                  <div class="col-lg-6">
+                    <ChampionMatchUpList status="goes well with"/>
+                  </div>
+                  <div class="col-lg-6">
+                    <ChampionMatchUpList status="goes even with"/>
+                  </div>
                 </div>
               </div>
-            </div>
-  </Tab>
-  <Tab eventKey={2} title="Tab 2">
-    Tab 2 content
-  </Tab>
-  <Tab eventKey={3} title="Tab 3">
-    Tab 3 content
-  </Tab>
-</Tabs>
-      
+
+              <div className="tab-pane" id="tab2">
+        <div className="row" style={{marginTop:20}}>                
+                  <div class="col-lg-6">
+                    <ChampionJngl status="is weak against"/>
+                  </div>
+
+                   <div class="col-lg-6">
+                    <ChampionStrong status="is strong against"/>
+                  </div>
+       
+                </div>
+                  </div>
+              <div className="tab-pane" id="tab3">
+             <div className="row" style={{marginTop:20}}>                
+                  <div class="col-lg-6">
+                    <ChampionAdc status="is weak against"/>
+                  </div>
+                   <div class="col-lg-6">
+                    <ChampionStrong status="is strong against"/>
+                  </div>
+
+                  </div>
+              </div>
+            </div>      
           </div>
         </div>
       </div>
