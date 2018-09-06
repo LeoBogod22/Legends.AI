@@ -58,19 +58,18 @@ class MatchUpItem extends Component {
     vote++;
     ChampsRef.child(key).update({ 'vote': vote });    
   }
-
-  displayMatchUpType = () => {
+displayMatchUpType = () => {
     switch (this.props.matchupType) {
-      case 0:
-        return <span class="label cs-bg-general" >General</span>;
       case 1:
-        return <span class="label cs-bg-middle">Middle</span>;
+        return <span class="label cs-bg-general" >General</span>;
       case 2:
-        return <span class="label cs-bg-bottom">Bottom</span>;
+        return <span class="label cs-bg-top">Top</span>;        
       case 3:
-        return <span class="label cs-bg-jungle">Jungle</span>;
+        return <span class="label cs-bg-middle">Middle</span>;        
       case 4:
-        return <span class="label cs-bg-top">Top</span>;
+        return <span class="label cs-bg-bottom">Bottom</span>;        
+      case 5:
+        return <span class="label cs-bg-jungle">Jungle</span>;
       default:
         return <span class="label cs-bg-general" >General</span>;
     }
@@ -91,7 +90,7 @@ class MatchUpItem extends Component {
             <h5 class="cs-matchup-item-name media-heading">{this.state.matchUpChamp.name}</h5>
           </Link>
           <div class="m-t-0">
-            {this.displayMatchUpType()}
+              {this.displayMatchUpType()}
             <ul class="cs-matchup-item-score list-unstyled list-inline">
               <li class="list-inline-item">
                 <span class="label label-success cs-matchup-item-votes-non-active">

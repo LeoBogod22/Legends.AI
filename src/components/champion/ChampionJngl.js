@@ -43,7 +43,7 @@ class ChampionJngl extends Component {
               this.state.matchupLists.map((weakChamp, index) =>
                 (weakChamp != null ?
                   <MatchUpItem key={index} champName={this.props.champ.name} matchID={weakChamp.matchID} matchupType={weakChamp.matchType} upVote={weakChamp.upVote} downVote={weakChamp.downVote} />
-                  : null)              
+                  : <p> no data </p>)              
             ): null}
           </div>
          

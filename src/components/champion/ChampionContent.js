@@ -2,29 +2,28 @@ import React, { Component } from 'react'
 import ChampionMatchUpList from './ChampionMatchUpList'
 import { connect } from 'react-redux'
 import ChampionCounterTips from './ChampionCounterTips';
-import ChampionStrong from './ChampionStrong'
-import ChampionJngl from './ChampionJngl'
-import ChampionAdc from './ChampionAdc'
-import {Tabs, Tab} from 'react-bootstrap';
-import {persistCombineReducers} from 'redux-persist'
+import {matchTypeList, statusType} from '../../utils/constants'
+
 class ChampionContent extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      activeTab: 0   
+      activeType: 0   
     };
 
-   
+    this.toggle = this.toggle.bind(this);
   }
 
- 
+  toggle(tab) {
+    if (this.state.activeType != tab) {
+      this.setState({
+        activeType: tab
+      });
+    }
+  }
+
   render() {
-    var matchTypeList = [
-  { name: 'Top', isActive: true },
-  { name: 'middle', isActive: false },
-  { name: 'Tab 3', isActive: false }
-];
     return (
       <div className="container">
         <div className="row">
@@ -33,59 +32,36 @@ class ChampionContent extends Component {
         <div className="col">
           <hr />
         </div>
-        <div className="row">                  
-          <div className="cs-tabs-container">
-            <ul className="nav nav-tabs">
-              <li className="tab-pane active"><a href="#tab1" data-toggle="tab">All</a></li>
-              <li><a href="#tab2" data-toggle="tab">Jungle</a></li>
-              <li><a href="#tab3" data-toggle="tab">ADC</a></li>
-            </ul>
-
-            <div className="tab-content" style={{margin:"30px"}}>
-              <div className="tab-pane active" id="tab1">
-                
-                <div className="row" style={{marginTop:20}}>                
-                  <div class="col-lg-6">
-                    <ChampionMatchUpList status="is weak against"/>
-                  </div>
-                  <div class="col-lg-6">
-                    <ChampionStrong status="is strong against"/>
-                  </div>
+        <div className="row">          
+          <div class="cs-tabs-container">
+            <div class="cs-tabs-nav">
+              <ul class="nav nav-tabs" style={{marginLeft:30, marginRight:30}}>
+              {
+                Array(6).fill(1).map((el, index) =>
+                <li key={index} class="nav-item">
+                  <a key={index} class={"nav-link " + (this.state.activeType == index ? "active" : "")} href="javascript:;" onClick={(e)=> this.toggle(index)}>{matchTypeList[index]}</a>
+                </li>
+              )}
+              </ul>
+            </div>
+            <div>              
+              <div className="row" style={{marginTop:20}}>                
+                <div class="col-lg-6">
+                  <ChampionMatchUpList statusType={statusType.WEAK} activeType={this.state.activeType}/>
                 </div>
-                <div className="row" style={{marginTop:30}}>
-                  <div class="col-lg-6">
-                    <ChampionMatchUpList status="goes well with"/>
-                  </div>
-                  <div class="col-lg-6">
-                    <ChampionMatchUpList status="goes even with"/>
-                  </div>
+                <div class="col-lg-6">
+                  <ChampionMatchUpList statusType={statusType.STRONG} activeType={this.state.activeType}/>
+                </div>
+              </div>              
+              <div className="row" style={{marginTop:30}}>
+                <div class="col-lg-6">
+                  <ChampionMatchUpList statusType={statusType.WELL} activeType={this.state.activeType}/>
+                </div>
+                <div class="col-lg-6">
+                  <ChampionMatchUpList statusType={statusType.EVEN} activeType={this.state.activeType}/>
                 </div>
               </div>
-
-              <div className="tab-pane" id="tab2">
-        <div className="row" style={{marginTop:20}}>                
-                  <div class="col-lg-6">
-                    <ChampionJngl status="is weak against"/>
-                  </div>
-
-                   <div class="col-lg-6">
-                    <ChampionStrong status="is strong against"/>
-                  </div>
-       
-                </div>
-                  </div>
-              <div className="tab-pane" id="tab3">
-             <div className="row" style={{marginTop:20}}>                
-                  <div class="col-lg-6">
-                    <ChampionAdc status="is weak against"/>
-                  </div>
-                   <div class="col-lg-6">
-                    <ChampionStrong status="is strong against"/>
-                  </div>
-
-                  </div>
-              </div>
-            </div>      
+            </div>
           </div>
         </div>
       </div>

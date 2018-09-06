@@ -118,7 +118,12 @@ alert(option);
       );
     }
     return (
-
+  <div className='zipcodeInput'>
+    <form method='POST' action='/search-champ'>
+       <input type='text' placeholder='Enter zipcode..' name='name'/>
+       <button>ENTER</button>
+    </form>
+       
 
       <div className="popular">
         <div className="container">
@@ -163,8 +168,10 @@ alert(option);
                  {this.state.result}
           </div>
         </div>
-      </div>
 
+      </div>
+ </div>
+  
 
     );
   }

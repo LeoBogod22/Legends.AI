@@ -154,7 +154,7 @@ alert(this.props.matchchamp.id);
               ) : (
                   <button class="btn btn-primary btn-sm btn-block" type="button" onClick={this.handleNewCounterTip}>Submit a new counter tip</button>
                 ))
-              : null
+              : <Link to="/login"> <p> Login to submit a counter Tip </p> </Link>
             }
             {this.state.tipList.length > 3 ? <Link class="btn btn-secondary btn-sm btn-block" to={`/matchup/${this.props.champ.name}/${this.props.matchchamp.name}/countertips`}>View more</Link> : null}
           </div>

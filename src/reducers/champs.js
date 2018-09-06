@@ -26,7 +26,10 @@ const initialState = {
         name: '',
         img: '',
         stats: '',
-        id: ''
+        id: '',
+        position: '',
+        weak: '',
+        strong: '',
     },
     loading: false,
 };

@@ -1,64 +1,94 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import MatchUpItem from '../common/MatchUpItem';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-class ChampionAdc extends Component {
+
+
+class CurrentChamp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      matchupLists: []
-    };
+       this.state = ({
+          isLoading: true,
+          name: '',
+          id: ''
 
-    this.showMore = this.showMore.bind(this);
+       })
   }
 
-  componentWillMount() {
-   
+  componentDidMount() {
+    fetch('/search-location-champ')
+    .then(res => res.json())
+    .then(data => {
+      if(data.data.cod === '404') {
+        this.setState({
+          isLoading: false,
+          cityNotFound: '404'
+        })
+      } else {
+         // Determine weather icon
+        
+           this.setState({
+              isLoading: false,
+              name: data.name,
+              id: data.id
 
-
-
-      if (this.props.champ.strong != null)
-      this.setState({ matchupLists: this.props.champ.strong.slice(-3)});
-  }
-
-  showMore() {
-    this.setState({
-      matchupLists: this.props.champ.strong.slice(-8)
+           });
+      }
     })
+    .catch(err => {
+       console.log(err);
+    })  
   }
 
   render() {
-    console.log('ff', this.props.champ.weakjngl);
-    return (
-      <div className="container">
-        <div className="col">
-          <div className="container">
-            <div className="row">
-              <h5>{this.props.champ.name} {this.props.status}</h5>
-            </div>
-          </div>
-          <div class="cs-matchups-list">
-          {this.props.champ.weakadc != null ?
-              this.state.matchupLists.map((weakChamp2, index) =>
-                (weakChamp2 != null ?
-                  <MatchUpItem key={index} champName={this.props.champ.name} matchID={weakChamp2.matchID} matchupType={weakChamp2.matchType} upVote={weakChamp2.upVote} downVote={weakChamp2.downVote} />
-                  : null)              
-            ): null}
-          </div>
+    const WeatherCardError = (
+       <div className='weatherCardContainer'>
+         <div className='weatherCardError'>
+           
+               <p> Whoa! Looks like there was an error with your zipcode.</p>
+            <Link to='/'><button>Try Again</button></Link>
+         </div>
+       </div>
+    )
+
+    const WeatherConditions = (
+      this.state.cityNotFound == 404 ? <div> { WeatherCardError } </div> :
+      <div>
+         <div className='homeBtn'>
+             <Link to='/'><button>Home</button></Link>
+         </div>
+         <div className='weatherCardContainer'>
+            <div className='weatherCard'>
+      
+           <div className='conditionsOverview'>
+              <p>{this.state.name}</p>
+              <p>{this.state.id}</p>
+           </div>
+           <div className='conditionDetails'>
+             
+           </div>
+            </div> 
          
-          <div class="cs-champion-view-all">
-            <button class="btn btn-secondary btn-sm btn-block" onClick={this.showMore}>View more</button>
-          </div>
-        </div>
+         </div>
       </div>
-    );
+    )
+
+    const LoadingDisplay = (
+       <div className='loading'>
+          
+       </div>
+    )
+
+    const CurrentWeatherCard = ( 
+       this.state.isLoading === true ? <div> {LoadingDisplay} </div> : <div> {WeatherConditions} </div>
+    )
+
+    return (
+       <div>
+               { CurrentWeatherCard }
+       </div>
+    )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    champ: state.champs.champ,
-  }
-}
-export default connect(mapStateToProps, null)(ChampionAdc);
+export default CurrentChamp;
