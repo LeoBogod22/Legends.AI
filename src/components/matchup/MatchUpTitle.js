@@ -51,7 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    exchangeMatchChamp: () => { dispatch(actions.exchangeMatchChamp()) }
+    exchangeMatchChamp: () => { window.location.reload(); dispatch(actions.exchangeMatchChamp()) }
   };
 };
 

@@ -13,13 +13,17 @@ const defaultProps = {
   isYou: true
 };
 
-class UserAvatar extends Component {
 
+
+class UserAvatar extends Component {
+selectChampion() {
+alert('f');
+}
   render() {
     return (
       <div>
         <div class="cs-champion-profile">          
-          <Link to={`/champions/${this.props.championName}`} onClick={() => this.props.selectChampion(this.props.championID)} >
+          <Link to={`/champions/${this.props.championName}`} onClick={() => this.selectChampion(this.props.championID)} >
             <div class="cs-champion-profile-icon" style={{ backgroundImage: 'url(' + this.props.imgAvatar + ')' }}>
             </div>
           </Link>

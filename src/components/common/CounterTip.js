@@ -31,7 +31,10 @@ componentDidMount(){
       if (user) {
         this.setState({
             currentUser: user,
-   
+      
+user_id: user.uid,
+
+
           email: user.email,
           authenticated: true
         })
@@ -48,55 +51,73 @@ componentDidMount(){
   }
   
    downvotePost(key, vote, user_id) {
-this.setState({
-user_id: app.auth().currentUser.uid
 
-}) 
 
 if (this.state.user_id !=null )
 {
 
-alert(this.state.user_id);
-let user_id= this.state.user_id;
-let votes = { user_id: true}; 
+CounterTipsRef.child(`${key}/votes/${this.state.user_id}`).once("value",snapshot => {
+if (snapshot.exists()){
+const userData = snapshot.val();
+console.log("exists!", userData);
+}
+else{
+
+  let user_id2= this.state.user_id;
+
+let votes = { [user_id2]: true};
 
 vote--;
 CounterTipsRef.child(key).update({ 'vote': vote, 'votes': votes }); 
 }
 
-else {
+});
+}
+
+
+
+
+if (this.state.user_id==null) {
 
 this.props.history.push('/login');
 }
 
 
-  }
-
-  upvotePost(key, vote, user_id) {
-    
-this.setState({
-user_id: app.auth().currentUser.uid
-
-}) 
+}
+ upvotePost(key, vote, user_id) {
 
 if (this.state.user_id !=null )
 {
 
-alert(this.state.user_id);
-let user_id= this.state.user_id;
-let votes = { user_id: true}; 
+CounterTipsRef.child(`${key}/votes/${this.state.user_id}`).once("value",snapshot => {
+if (snapshot.exists()){
+const userData = snapshot.val();
+console.log("exists!", userData);
+}
+else{
+
+  let user_id2= this.state.user_id;
+
+let votes = { [user_id2]: true};
 
 vote++;
 CounterTipsRef.child(key).update({ 'vote': vote, 'votes': votes }); 
 }
 
-else {
+});
+}
+
+
+
+
+if (this.state.user_id==null) {
 
 this.props.history.push('/login');
 }
 
 
-  }
+}
+
   render() {
     const { counterTip } = this.props
 
@@ -106,7 +127,7 @@ this.props.history.push('/login');
           <div class="cs-counter-tip-score-alt">
             <div class="cs-counter-tip-vote-alt cs-counter-tip-upvote-alt">
               <i class="fa fa-fw fa-caret-up cs-counter-tip-caret cs-counter-tip-caret-non-active cs-counter-tip-vote-alt cs-counter-tip-vote-non-active-alt"
-                onClick={()=> this.upvotePost(counterTip.key, counterTip.vote, this.state.user_id)}></i>
+                disabled={!this.state.email} onClick={()=> this.upvotePost(counterTip.key, counterTip.vote, this.state.user_id)}></i>
             </div>
             <p class="cs-counter-tip-total-alt jq-counter-tip-57b4f5b5aabedb001bdcd5f3">{counterTip.vote}</p>
             <div class="cs-counter-tip-vote-alt cs-counter-tip-downvote-alt">
