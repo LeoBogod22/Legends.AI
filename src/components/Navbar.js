@@ -19,6 +19,7 @@ import SearchBar from './common/SearchBar';
 import app from "../config/dev";
 import { Route, withRouter } from "react-router";
 
+import { UserRef, timeRef } from './reference';
 class NavigatioBar extends React.Component {
 
 
@@ -30,6 +31,7 @@ class NavigatioBar extends React.Component {
       redirect: false,
       email: '',
       name: '',
+      elo: '',
 
 
       isOpen: false
@@ -56,7 +58,35 @@ class NavigatioBar extends React.Component {
 
 
 
+componentDidMount() { 
+    app.auth().onAuthStateChanged((user) => {
 
+        //this was the variable u were using and is undefined
+      //this.props.location.state.car.id
+        //alert("car has been saved!")
+          if (user) {
+        this.setState({email:user.email})
+      
+        const user_ID=  user.uid;
+            
+
+      UserRef.child(`${user_ID}`).once('value', (snapshot) => {
+
+ snapshot.forEach(shot => {
+
+ var childData = shot.val();
+ this.setState({elo: childData})
+
+ console.log(childData);
+
+ });
+
+ });
+ 
+}
+  });
+
+       }
 
   componentWillMount() {
 
@@ -80,7 +110,7 @@ class NavigatioBar extends React.Component {
       }
     });
   }
-  e
+  
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -135,8 +165,12 @@ class NavigatioBar extends React.Component {
             </li>
 
             {authenticated ? (
+
               <li className="nav-item">&#160;&#160;&#160;&#160;
+              <br></br>
+             
              <Link to="/" className="nav-link" onClick={this.signout}> signout </Link> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+              <p> rank : {this.state.elo} </p>
             </li>
 
             ) : (
@@ -168,6 +202,7 @@ class NavigatioBar extends React.Component {
       </form> */}
           <div className="col-3">
             {authenticated ? app.auth().currentUser.email : null}
+
           </div>
           <SearchBar isMatchup={false} isMatchChampion={false} />
         </div>

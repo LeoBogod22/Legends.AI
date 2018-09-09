@@ -4,7 +4,7 @@ import CounterTip from '../common/CounterTip';
 import { CounterTipsRef, timeRef } from '../reference';
 import app from "../../config/dev";
 import { Link } from 'react-router-dom';
-
+import { UserRef } from '../reference';
 class ChampionCounterTips extends Component {
   constructor(props, context) {
     super(props, context);
@@ -14,6 +14,7 @@ class ChampionCounterTips extends Component {
       newTip: "",
       isNewCounterTip: false,
       tipList: [],
+      elo: '',
       loading: true,
       authenticated: false
     };
@@ -32,7 +33,34 @@ class ChampionCounterTips extends Component {
   componentWillMount() {
     this.getCounterTips(this.props)
   }
+  componentDidMount(){
+app.auth().onAuthStateChanged((user) => {
 
+        //this was the variable u were using and is undefined
+      //this.props.location.state.car.id
+        //alert("car has been saved!")
+        this.setState({email:user.email})
+      
+        const user_ID=  user.uid;
+            
+        
+      UserRef.child(`${user_ID}`).once('value', (snapshot) => {
+
+ snapshot.forEach(shot => {
+
+ var childData = shot.val();
+ this.setState({elo: childData})
+
+ console.log(childData);
+
+ });
+
+ });
+ 
+
+  });
+
+       }
   getCounterTips() {
     //Get CounterTipList
     const champ_id = this.props.champ.id;
@@ -80,7 +108,8 @@ class ChampionCounterTips extends Component {
         parent_id: this.props.champ.id,
         text: this.state.newTip,
         timestamp: timeRef,
-        user_id: app.auth().currentUser.uid  
+        elo: this.state.elo,
+        user_email: app.auth().currentUser.email
       };
       CounterTipsRef.push(newCounterTip);
 

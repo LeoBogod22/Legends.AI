@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CounterTipsRef } from '../reference';
 import app from "../../config/dev";
 import { Route, withRouter } from "react-router";
-
+import { UserRef } from '../reference';
 import { Redirect, Link } from 'react-router-dom';
 const defaultProps = {
   counterTip: {}
@@ -21,12 +21,17 @@ class CounterTip extends Component {
       loading: true,
       email : '',
       authenticated: false,
-      user_id : ''
+      user_id : '',
+      elo: ''
     };
   }
+
+
+
 componentDidMount(){
 
     //Check Login
+  
     app.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -44,11 +49,41 @@ user_id: user.uid,
           authenticated: false
         })
       }
-      alert(this.state.user_id);
+    
     });
 
+ app.auth().onAuthStateChanged((user) => {
+
+        //this was the variable u were using and is undefined
+      //this.props.location.state.car.id
+        //alert("car has been saved!")
+        this.setState({email:user.email})
+      
+        const user_ID=  user.uid;
+            
+        
+      UserRef.child(`${user_ID}`).once('value', (snapshot) => {
+
+ snapshot.forEach(shot => {
+
+ var childData = shot.val();
+ this.setState({elo: childData})
+if(this.state.elo=="Bronze"){
+  console.log("true");
+}
+else{
+  console.log('cra');
+}
+
+ });
+
+ });
  
+
+  });
   }
+
+
   
    downvotePost(key, vote, user_id) {
 
@@ -117,12 +152,30 @@ this.props.history.push('/login');
 
 
 }
+displayImage = () => {
+    switch (this.state.elo) {
+      case "Bronze":
+  
+        return <img src="https://ih0.redbubble.net/image.160793272.8306/ap,550x550,12x12,1,transparent,t.png" id='img'/>;
+      case 2:
+        return <span class="label cs-bg-top">Top</span>;        
+      case 3:
+        return <span class="label cs-bg-middle">Middle</span>;        
+      case 4:
+        return <span class="label cs-bg-bottom">Bottom</span>;        
+      case 5:
+        return <span class="label cs-bg-jungle">Jungle</span>;
+      default:
+        return <span class="label cs-bg-general" >General</span>;
+    }
+  }
 
   render() {
     const { counterTip } = this.props
 
     return (
       <div>
+
         <div class="cs-counter-tip">
           <div class="cs-counter-tip-score-alt">
             <div class="cs-counter-tip-vote-alt cs-counter-tip-upvote-alt">
@@ -140,6 +193,7 @@ this.props.history.push('/login');
               <p class="cs-counter-tip-text">{counterTip.text}</p>
               <div class="cs-counter-tip-footer clearfix">
                 <p class="cs-comment-metadata">by <span class="text-primary">User</span></p>
+           {this.displayImage()}
               </div>
             </div>
           </div>

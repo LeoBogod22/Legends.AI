@@ -432,7 +432,6 @@ li {
     border-radius: .25rem;
     box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
     padding: 1rem;
-     margin-top: 200px;
         width: 40%;
 }
 
@@ -703,7 +702,14 @@ left: 150px;
     padding-right: 10px;
 }
 
-
+#img {
+    height: 60px;
+    float: right;
+    margin-left: -400px;
+    position: relative;
+    left: -900px;
+    top: -50px;
+}
 
 .media-body {
     width: 10000px;

@@ -58,11 +58,11 @@ class SearchBar extends Component {
     this.downshift.clearSelection();
     if (this.props.isMatchChampion) {
       this.props.selectMatchUpChampion(champ_id);
-      
+      window.location.reload();
     }
     else {
       this.props.selectChampion(champ_id);
-
+      window.location.reload();
     }
   }
 

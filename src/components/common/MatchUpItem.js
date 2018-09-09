@@ -102,6 +102,8 @@ displayMatchUpType = () => {
                 <span class="label label-danger cs-matchup-item-votes-non-active">
                   <i class="fa fa-fw fa-caret-down"></i>
                   <span>{this.props.downVote}</span>
+
+                  
                 </span>
               </li>
             </ul>

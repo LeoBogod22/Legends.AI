@@ -30,6 +30,8 @@ const initialState = {
         position: '',
         weak: '',
         strong: '',
+        winrate: '',
+        lanewin: ''
     },
     loading: false,
 };

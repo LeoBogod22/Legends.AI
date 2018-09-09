@@ -4,7 +4,7 @@ import CounterTip from '../common/CounterTip';
 import { ChampsRef, CounterTipsRef, timeRef } from '../reference';
 import app from "../../config/dev";
 import { Link } from 'react-router-dom';
-
+import { UserRef } from '../reference';
 class MatchUpCounterTips extends Component {
   constructor(props, context) {
     super(props, context);
@@ -16,7 +16,8 @@ class MatchUpCounterTips extends Component {
       tipList: [],
       loading: true,
       authenticated: false,
-      parentID:""
+      parentID:"",
+      elo: ""
     };
 
     this.handleNewCounterTip = this.handleNewCounterTip.bind(this);
@@ -51,7 +52,6 @@ class MatchUpCounterTips extends Component {
 
   componentWillMount(){
     //Get CounterTipList        
-alert(this.props.matchchamp.id);
     let champ_id= this.props.matchchamp.id;
 
   CounterTipsRef.orderByChild('matchup_id').equalTo(`${champ_id}`).on('value', (snap) => {           
@@ -66,6 +66,32 @@ alert(this.props.matchchamp.id);
   console.log(tipList);
 
     });
+
+  app.auth().onAuthStateChanged((user) => {
+
+        //this was the variable u were using and is undefined
+      //this.props.location.state.car.id
+        //alert("car has been saved!")
+        this.setState({email:user.email})
+      
+        const user_ID=  user.uid;
+            
+        
+      UserRef.child(`${user_ID}`).once('value', (snapshot) => {
+
+ snapshot.forEach(shot => {
+
+ var childData = shot.val();
+ this.setState({elo: childData})
+
+ console.log(childData);
+
+ });
+
+ });
+ 
+
+  });
   }
 
   handleNewCounterTip() {
@@ -76,16 +102,18 @@ alert(this.props.matchchamp.id);
 
   handleSubmitCounterTip(event) {
     event.preventDefault();
+    alert('f');
         let champ_id= this.props.matchchamp.id;
-     alert(champ_id);
+ 
    let id = CounterTipsRef.push().key;  
         const NewComment= {
             id: id,
+            rank: this.state.elo,
             vote: 0,
             matchup_id: this.props.matchchamp.id, 
              text: this.state.newTip,
               timestamp: timeRef,
-               user_id: app.auth().currentUser.uid  
+               user_email: app.auth().currentUser.email 
     }
 
      if (NewComment.text.length) {
@@ -152,7 +180,7 @@ alert(this.props.matchchamp.id);
                   </ul>
                 </form>
               ) : (
-                  <button class="btn btn-primary btn-sm btn-block" type="button" onClick={this.handleNewCounterTip}>Submit a new counter tip</button>
+                  <button class="btn btn-primary btn-sm btn-block" type="button" onClick={this.handleNewCounterTip}>Submit a new counter tip!</button>
                 ))
               : <Link to="/login"> <p> Login to submit a counter Tip </p> </Link>
             }
