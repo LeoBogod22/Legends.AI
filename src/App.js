@@ -71,7 +71,7 @@ class App extends Component {
               {/* <Route exact path='/champions/:id' component={OneChamp} /> */}
               <Route exact path='/champions/:name' component={Champion} />
 
-                <Route exact path='/' component={PersonList} />
+                <Route exact path='/' component={PersonInput} />
                 <Route exact path='/champions' component={PersonList} />
               <Route path="/matchup" component={MatchUp} />              
 
