@@ -25,9 +25,6 @@ import Champion from './components/champion/Champion';
 import CurrentChamp from './components/champion/ChampionAdc';
 
 class App extends Component {
-
-
- 
   state = { loading: true, authenticated: false, user: null };
 
   componentWillMount() {
