@@ -26,7 +26,7 @@ class PersonList extends Component {
         super();
        
         selectedOption: 'option1'
-        value2: "";
+        value2: '';
     
         this.handleChecked = this.handleChecked.bind(this); // set this, because you need get methods from CheckBox
  this.handleChange= this.handleChange.bind(this);
@@ -82,7 +82,7 @@ class PersonList extends Component {
             champname:this.refs.query.value,
             server: this.state.value2
         }).then((data)=>{
-            console.log("search result is", data)
+            console.log("search result is + ", data)
         })
     }
 
@@ -134,7 +134,7 @@ class PersonList extends Component {
 <select value={this.state.value2} onChange={this.handleChange}>
   <option value="EUW">EUW</option>
   <option value="NA">NA</option>
-  <option value="">Cranberry</option>
+  <option value="EUNE">EUNE</option>
 </select>
 
 
