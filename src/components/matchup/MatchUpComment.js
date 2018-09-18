@@ -125,7 +125,7 @@ class MatchUpComment extends Component {
                         <span class="jq-comment-child-57b4f47aaabedb001bdcd2d3">1</span>
                         point
                       </strong>
-                      3 years ago
+                      4 years ago
                     </p>
                     <p class="cs-comment-text">Very solid advice</p>
                   </div>
