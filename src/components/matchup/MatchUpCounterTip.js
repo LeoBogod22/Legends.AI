@@ -27,7 +27,7 @@ class MatchUpCounterTip extends Component {
             <div>
               <p class="cs-counter-tip-text">{this.props.counterTip}</p>
               <div class="cs-counter-tip-footer clearfix">
-                <p class="cs-comment-metadata">by <span class="text-primary">Varph</span></p>
+                <p class="cs-comment-metadata">by <span class="text-primary">Varph2</span></p>
               </div>
             </div>
           </div>
