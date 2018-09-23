@@ -20,7 +20,8 @@ const initialState = {
         name: '',
         img: '',
         stats: '',
-        id: ''
+        id: '',
+        win:''
     },
     matchchamp: {
         name: '',
@@ -30,7 +31,7 @@ const initialState = {
         position: '',
         weak: '',
         strong: '',
-        winrate: '',
+        win: '',
         lanewin: ''
     },
     loading: false,

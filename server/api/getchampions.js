@@ -1,76 +1,107 @@
-
 const fetch = require('node-fetch');
 
-module.exports = (app) => {
+module.exports = (app)=>{
 
     let champname;
 
-    app.post('/search-champ', (req, res) => {
-        champname = req.body.champname;   //added by hu
-    server = req.body.server; 
+    app.post('/search-champ', (req,res)=>{
+        champname = req.body.champname;
+        //added by hu
+        let region = req.body.region;
+        let id = "80339518";
         //need to call api to get champions
-     const apiId = 'RGAPI-de8d0358-cbb7-4708-9602-615fa4035c52';
-        const baseUrl = 'https://'+ server+'/api.riotgames.com/lol/summoner/v3/summoners/by-name/'+ champname + '?api_key='+apiId;
+        const apiId = 'RGAPI-b95b9f13-9880-4973-98e3-2714e87fc13b';
+        const baseUrl = 'https://' + region + '/api.riotgames.com/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
 
-
-        const userLocation = (url1, url2, champname) => {
+        const userLocation = (url1,url2,champname)=>{
 
             let newUrl = url1 + champname + url2;
             return newUrl;
         };
 
-        const apiUrl = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/'+ champname + '?api_key='+apiId;
+        const apiUrl = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
 
-        fetch(apiUrl)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                var id = data.id;
-            })
-            .catch(err => {
+        fetch(apiUrl).then(res=>res.json()).then(data=>{
+            var id = data.accountId;
+            console.log(data)
+res.send({
+                        data
+                    });
+            const apiUrl2 = 'https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/' + id + '?api_key=' + apiId;
+
+            fetch(apiUrl2).then(res=>res.json()).then(data=>{
+                var id2 = '3775198844';
+               
+                console.log(data)
+
+                const apiUrl3 = 'https://euw1.api.riotgames.com/lol/match/v3/matches/' + id2 + '?api_key=' + apiId;
+
+                fetch(apiUrl3).then(res=>res.json()).then(data=>{
+                    res.send({
+                        data
+                    });
+                    console.log(data)
+
+                }).catch(err=>{
+                    res.redirect('/error');
+                });
+            }).catch(err=>{
                 res.redirect('/error');
             });
 
-
-
-const apiUrl2 = 'https://euw1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/'+id;
-
-   fetch(apiUrl2)
-            .then(res => res.json())
-            .then(data => {
-                res.send({ data });
-            })
-            .catch(err => {
-                res.redirect('/error');
-            });
-
-
+        }).catch(err=>{
+            res.redirect('/error');
+        });
 
     })
-    app.get('/search-location-champ', (req, res) => {
+    app.get('/search-location-champ', (req,res)=>{
         //build api URL with user zip
-        const apiId = 'RGAPI-de8d0358-cbb7-4708-9602-615fa4035c52';
-        const baseUrl = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/'+ champname + '?api_key='+apiId;
+        champname = req.body.champname;
+        //added by hu
+        let region = req.body.region;
+        let id = "80339518";
+        //need to call api to get champions
+        const apiId = 'RGAPI-b95b9f13-9880-4973-98e3-2714e87fc13b';
+        const baseUrl = 'https://' + region + '/api.riotgames.com/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
 
-
-        const userLocation = (url1, url2, champname) => {
+        const userLocation = (url1,url2,champname)=>{
 
             let newUrl = url1 + champname + url2;
             return newUrl;
         };
 
-        const apiUrl = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/'+ champname + '?api_key='+apiId;
+        const apiUrl = 'https://euw1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
 
+        fetch(apiUrl).then(res=>res.json()).then(data=>{
+            var id = data.accountId;
+            console.log(data)
+res.send({
+                        data
+                    });
+            const apiUrl2 = 'https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/' + id + '?api_key=' + apiId;
 
-        fetch(apiUrl)
-            .then(res => res.json())
-            .then(data => {
-                res.send({ data });
-            })
-            .catch(err => {
+            fetch(apiUrl2).then(res=>res.json()).then(data=>{
+                var id2 = '3775198844';
+               
+                console.log(data)
+
+                const apiUrl3 = 'https://euw1.api.riotgames.com/lol/match/v3/matches/' + id2 + '?api_key=' + apiId;
+
+                fetch(apiUrl3).then(res=>res.json()).then(data=>{
+                    res.send({
+                        data
+                    });
+                    console.log(data)
+
+                }).catch(err=>{
+                    res.redirect('/error');
+                });
+            }).catch(err=>{
                 res.redirect('/error');
             });
 
+        }).catch(err=>{
+            res.redirect('/error');
+        });
 
     })
-}

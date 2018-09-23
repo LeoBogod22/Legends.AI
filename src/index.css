@@ -53,9 +53,57 @@
 body {
    /* background-color: #4a4a4a0a; */
     font-size: 1rem;
+        background-color: #0f0713;
+    color: #fff;
+    font-family: roboto light,sans-serif;
+    font-size: 16px;
+
     font-weight: 400;
     line-height: 1.5;
+        background-image: url(//static.lolskill.net/img/skins/background/Katarina_0.jpg);
+
 }
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.summoner-page-header-champion {
+    width: 60px;
+    height: 60px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid #2e2734;
+  }
+.summoner-page-header-champion:not(:first-child) {
+    margin-left: 15px;
+}
+.summoner-page-header-champion:not(.active) {
+    cursor: pointer;
+        background-image: url(//static.lolskill.net/img/champions/64/yorick.png);
+
+}
+.champion-header {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    background-color: #000;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(//static.lolskill.net/img/skins/splash/Katarina_0.jpg);
+    opacity: 1;
+}
+.champion-header .overlay {
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+}
+
 .cs-counter-tip-upvote-alt {
     margin-bottom: -.25rem;
 }
@@ -66,6 +114,43 @@ body {
   color: #666;
   cursor: pointer;
   font-weight: bold;
+}
+
+.champion-header .icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: bottom;
+        background-image: url(//static.lolskill.net/img/profileicons/64/1666.png);
+
+}
+.champion-header .icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: bottom;
+}
+.champion-header .info-text {
+    font-family: roboto black,sans-serif;
+}
+.champion-header .info-row {
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+}
+#summoner-page-header-champion-feature {
+    display: none;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    height: 35%;
+}
+.ml-auto {
+    margin-left: auto!important;
 }
 /* p {
   font-family: "Roboto Condensed";

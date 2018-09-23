@@ -13,12 +13,13 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import Search from './summoner/search';
 import { Redirect, Link } from 'react-router-dom';
 import Searchresults from './searchresults';
 import SearchBar from './common/SearchBar';
 import app from "../config/dev";
 import { Route, withRouter } from "react-router";
-
+import axios from 'axios';
 import { UserRef, timeRef } from './reference';
 class NavigatioBar extends React.Component {
 
@@ -32,6 +33,7 @@ class NavigatioBar extends React.Component {
       email: '',
       name: '',
       elo: '',
+      value2: '',
 
 
       isOpen: false
@@ -40,8 +42,26 @@ class NavigatioBar extends React.Component {
     }
     this.toggle = this.toggle.bind(this);
     this.signout = this.signout.bind(this);
+    this.handleChange=this.handleChange.bind(this);
 
   }
+
+handleChange(event) {
+    this.setState({ value2: event.target.value });
+
+  }
+searchChampions(e) {
+        e.stopPropagation()
+        e.preventDefault()
+
+       axios.post("http://localhost:5000/search-champ", {
+                                       champname:this.refs.query.value,
+                                       server: this.state.value2
+    }).then((data)=>{
+        console.log("search result is + ", data)
+    })
+}
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -205,8 +225,13 @@ componentDidMount() {
 
           </div>
           <SearchBar isMatchup={false} isMatchChampion={false} />
+          <div>
+          <Search/>
+          </div>
         </div>
         {content}
+
+         
       </nav>
     );
   }

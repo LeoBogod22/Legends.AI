@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import Login from "./Login";
 import app from "./config/dev";
 import SignUp from "./SignUp";
-
+import Stats from "./components/summoner/stats";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -81,6 +81,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
                     <Route exact path="/signup" component={SignUp} />
                      <Route exact path="/signout" component={PersonList} />
+                       <Route exact path="/stats/:data" component={Stats} />
 
                        <Route exact path='/current-weather' component={CurrentChamp}/>
             </Switch>

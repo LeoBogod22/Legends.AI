@@ -24,7 +24,7 @@ class PersonList extends Component {
 
     constructor() {
         super();
-       
+      
         selectedOption: 'option1'
         value2: '';
     
@@ -78,13 +78,13 @@ class PersonList extends Component {
         e.stopPropagation()
         e.preventDefault()
 
-        window.$.post("http://localhost:5000/search-champ", {
-            champname:this.refs.query.value,
-            server: this.state.value2
-        }).then((data)=>{
-            console.log("search result is + ", data)
-        })
-    }
+       axios.post("http://localhost:5000/search-champ", {
+                                       champname:this.refs.query.value,
+                                       server: this.refs.query.value2
+    }).then((data)=>{
+        console.log("search result is + ", data)
+    })
+}
 
     render() {
 
@@ -127,15 +127,7 @@ class PersonList extends Component {
         }
         return (
               <div className='zipcodeInput'>
-                <form>
-                    <input ref="query" type='text' placeholder='Enter zipcode..' name='name'/>
-                    <button onClick={this.searchChampions.bind(this)}>ENTER</button>
-                </form>
-<select value={this.state.value2} onChange={this.handleChange}>
-  <option value="EUW">EUW</option>
-  <option value="NA">NA</option>
-  <option value="EUNE">EUNE</option>
-</select>
+             
 
 
                 <div className="popular">

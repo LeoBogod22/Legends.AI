@@ -21,7 +21,7 @@ class MatchUpTitle extends Component {
               <div class="col-sm-6 hidden-xs-down">
                 <SearchBar isMatchup={true} isMatchChampion={false}/>
 
-                 <span>win rate: {this.props.matchchamp.lanewin}</span>
+                 <span>win rate: {this.props.downVote}</span>
               </div>
               <div class="col-sm-6">               
                 <UserAvatar isYou={true} championID={this.props.champ.id} championName={this.props.champ.name} imgAvatar={this.props.champ.img}/>
