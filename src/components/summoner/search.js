@@ -51,6 +51,8 @@ searchChampions(e) {
            this.setState({data: data});
            this.props.history.push(`/stats/${this.state.data}`)
 
+           console.log(this.state.data);
+
     })
 }
 

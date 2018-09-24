@@ -10,7 +10,7 @@ module.exports = (app)=>{
         let region = req.body.region;
         let id = "80339518";
         //need to call api to get champions
-        const apiId = 'RGAPI-b95b9f13-9880-4973-98e3-2714e87fc13b';
+        const apiId = 'RGAPI-092fb08a-8d6d-4d0f-b5c9-8d2db8105f12';
         const baseUrl = 'https://' + region + '/api.riotgames.com/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
 
         const userLocation = (url1,url2,champname)=>{
@@ -104,4 +104,4 @@ res.send({
             res.redirect('/error');
         });
 
-    })
+    })}

@@ -16,21 +16,30 @@ class Stats extends React.Component {
 
 
 componentDidMount() {
-   
-if(this.state.data === '404') {
+   fetch('/search-location-champ')
+    .then(res => res.json())
+    .then(data => {
+if(this.state.data) {
         this.setState({
-          isLoading: false,
-          cityNotFound: '404'
+          isLoading: true,
+         
+          data: data
         })
-      } else {
 
         
-        console.log('search', this.state.data);
+        console.log('search s', this.state.data);
+      } else {
+           this.setState({isLoading:false})
 
-      }
 
-    }
+}
 
+   
+    })
+ .catch(err => {
+       console.log(err);
+    })
+  }
   render() {
     const { selectedPath, loaded, data } = this.state;
 
@@ -49,7 +58,7 @@ if(this.state.data === '404') {
                     <div className="info-text d-inline-flex flex-column justify-content-center">
                       <div>
                         <span className="text-muted">EUW</span>
-                        <span className="title">Jaden Yuki1 </span>
+                        <span className="title">{this.state.data.name} </span>
                       </div>
                       <div className="subtitle">
                         <span className="text-muted">MAINS</span><img className="role tip" src="//static.lolskill.net/img/roles/32/mid.png" title alt="Mid" data-original-title="Mid" /><img className="role tip" src="//static.lolskill.net/img/roles/32/top.png" title alt="Top" data-original-title="Top" /><img className="role tip" src="//static.lolskill.net/img/roles/32/jungle.png" title alt="Jungle" data-original-title="Jungle" />
