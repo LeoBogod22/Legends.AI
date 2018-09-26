@@ -57,9 +57,11 @@ res.send({
     app.get('/search-location-champ', (req,res)=>{
         //build api URL with user zip
         champname = req.body.champname;
+        
+        let id= champion.id;
         //added by hu
         let region = req.body.region;
-        let id = "80339518";
+
         //need to call api to get champions
         const apiId = 'RGAPI-b95b9f13-9880-4973-98e3-2714e87fc13b';
         const baseUrl = 'https://' + region + '/api.riotgames.com/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
@@ -89,7 +91,7 @@ res.send({
 
                 fetch(apiUrl3).then(res=>res.json()).then(data=>{
                     res.send({
-                        data
+                        data;
                     });
                     console.log(data)
 
