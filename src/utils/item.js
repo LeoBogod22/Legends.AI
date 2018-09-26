@@ -3,27 +3,13 @@
     "name": "Boots of Speed",
     "description": "<groupLimit>Limited to 1.</groupLimit><br><br><unique>UNIQUE Passive - Enhanced Movement:</unique> +25 Movement Speed",
     "plaintext": "Slightly increases Movement Speed",
-    "into": [
-      "3006",
-      "3047",
-      "3020",
-      "3158",
-      "3111",
-      "3117",
-      "3009"
-    ],
-    "tags": [
-      "Boots"
-    ],
-    "stats": {
-      "FlatMovementSpeedMod": 25
-    },
+ 
     "id": "1001",
     "icon": "http://ddragon.leagueoflegends.com/cdn/7.8.1/img/item/1001.png",
     "sprite": {
       "url": "http://ddragon.leagueoflegends.com/cdn/7.8.1/img/sprite/item0.png",
       "x": 0,
-      "y": 0
+      "y": 02
     },
     "price": {
       "base": 300,
@@ -36,17 +22,7 @@
     "name": "Faerie Charm",
     "description": "<stats><mana>+25% Base Mana Regen </mana></stats>",
     "plaintext": "Slightly increases Mana Regen",
-    "into": [
-      "3028",
-      "3070",
-      "3073",
-      "3114",
-      "3098",
-      "3096"
-    ],
-    "tags": [
-      "ManaRegen"
-    ],
+   
     "stats": {},
     "id": "1004",
     "icon": "http://ddragon.leagueoflegends.com/cdn/7.8.1/img/item/1004.png",
