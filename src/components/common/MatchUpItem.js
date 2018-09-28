@@ -25,6 +25,8 @@ class MatchUpItem extends Component {
     super(props);
     this.state = {
       matchUpChamp: {},
+      counter: 0,
+      counter2: 0
     }
 
     this.displayMatchUpType = this.displayMatchUpType.bind(this);
@@ -37,6 +39,10 @@ class MatchUpItem extends Component {
   
   componentDidMount() {
     this.getMatchUpChamp(this.props);
+    this.setState({counter: this.props.upVote});
+
+
+    this.setState({counter2: this.props.downVote});
   }
 
   getMatchUpChamp(props){
@@ -47,6 +53,17 @@ class MatchUpItem extends Component {
         matchUpChamp: snapshot.val()
       });
     });
+  }
+  upvote(){
+
+this.setState({counter: this.state.counter+1});
+console.log(this.state.counter);
+  }
+
+
+  downVote(){
+
+this.setState({counter2: this.state.counter2-1});
   }
 
   downvotePost(key, vote) {
@@ -94,16 +111,16 @@ displayMatchUpType = () => {
             <ul class="cs-matchup-item-score list-unstyled list-inline">
               <li class="list-inline-item">
                 <span class="label label-success cs-matchup-item-votes-non-active">
-                  <i class="fa fa-fw fa-caret-up"></i>
-                  <span>{this.props.upVote}</span>
+                  <i class="fa fa-fw fa-caret-up" onClick={()=> this.upvote(this.state.counter2)}> </i>
+                  <span>{this.state.counter}</span>
                 </span>
               </li>
               <li class="list-inline-item">
                 <span class="label label-danger cs-matchup-item-votes-non-active">
-                  <i class="fa fa-fw fa-caret-down"></i>
-                  <span>{this.props.downVote}</span>
+                  <i class="fa fa-fw fa-caret-down"  onClick={()=> this.downVote(this.state.counter)}>   </i>      
+                  <span>{this.state.counter2} </span>
 
-                  
+                 
                 </span>
               </li>
             </ul>
