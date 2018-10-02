@@ -70,7 +70,7 @@ res.send({
         const apiUrlSummonersByUsername = baseUrl + '/lol/summoner/v3/summoners/by-name/' + champname + '?api_key=' + apiId;
 
         fetch(apiUrlSummonersByUsername).then(res=>res.json()).then(data=>{
-            
+            var summonerData = data;
             const apiUrlMatchListsByAccountId = baseUrl + '/lol/match/v3/matchlists/by-account/' + data.accountId + '?api_key=' + apiId;
 
             fetch(apiUrlMatchListsByAccountId).then(res=>res.json()).then(data=>{
@@ -105,11 +105,12 @@ res.send({
 
                 // Wait for all promises to be resolved or rejected
                 Promise.all(promises)
-                .then((values) => {
+                .then((matches) => {
+                    summonerData.values = matches;
                     console.log("Sending data to client");
                     // Send combined responses for all (or limited say top 5) matches
                     res.send({
-                        values
+                        summonerData
                     });
                 });
                 

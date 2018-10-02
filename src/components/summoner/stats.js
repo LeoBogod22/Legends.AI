@@ -31,7 +31,7 @@ componentDidMount() {
       // } else {
       //      this.setState({isLoading:false})
       // }
-      console.log(data.values);
+      console.log(data.summonerData);
       this.setState({isLoading:false});
     })
  .catch(err => {
