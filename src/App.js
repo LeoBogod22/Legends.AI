@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 
 // import MatchUp from './components/MatchUp';
-import Searchresults from './components/searchresults';
 import './index.css';
 import './App.css';
 import PersonList from './components/PersonList'
@@ -18,7 +17,6 @@ import {BrowserRouter} from 'react-router-dom';
 
 import NavigationBar from './components/Navbar';
 
-import OneChamp from './components/Champions';
 import MatchUp from './components/matchup/MatchUp';
 import Champion from './components/champion/Champion';
 

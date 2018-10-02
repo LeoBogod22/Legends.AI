@@ -16,25 +16,23 @@ class Stats extends React.Component {
 
 
 componentDidMount() {
-   fetch('/search-location-champ')
+   fetch('http://localhost:5000/search-location-champ?champname=JadenYuki1&region=euw1')
     .then(res => res.json())
     .then(data => {
-if(this.state.data) {
-        this.setState({
-          isLoading: true,
+      // if(this.state.data) {
+      //   this.setState({
+      //     isLoading: true,
          
-          data: data
-        })
+      //     data: data
+      //   })
 
         
-        console.log('search s', this.state.data);
-      } else {
-           this.setState({isLoading:false})
-
-
-}
-
-   
+      //   console.log('search s', this.state.data);
+      // } else {
+      //      this.setState({isLoading:false})
+      // }
+      console.log(data.values);
+      this.setState({isLoading:false});
     })
  .catch(err => {
        console.log(err);

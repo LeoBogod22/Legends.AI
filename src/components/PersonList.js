@@ -4,10 +4,7 @@ import { ChampsRef, timeRef } from './reference';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import * as actions from '../actions/champs';
-import Filters from './filter';
-import app from "../config/dev";
 
-import { UserRef} from './reference';
 class PersonList extends Component {
     state = {
         persons: [],
