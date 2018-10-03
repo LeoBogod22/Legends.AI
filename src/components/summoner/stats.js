@@ -40,7 +40,7 @@ componentDidMount() {
       this.setState({data: data.summonerData});
 
       this.setState({data2: data.values})
-      this.setState({isLoading:false});
+      this.setState({loaded:false});
     })
  .catch(err => {
        console.log(err);
@@ -49,8 +49,20 @@ componentDidMount() {
   render() {
     const { selectedPath, loaded, data } = this.state;
 
-    return (
-       <div>
+let datalist;
+
+       if (loaded) {
+        datalist  = <div className="TaskList-empty">Loading...</div>; 
+
+    } 
+
+
+     else if (data.length) {
+
+       datalist  = (
+
+
+         <div>
     
          <section id="summonerProfile"> <section id="summoner-header">
 
@@ -81,16 +93,24 @@ componentDidMount() {
             
   </section>
   <div className="col-12 col-lg-8 match-history"> 
-    for(var i=0; i>5; i++){
-
-   <div> {this.state.data.values["0"].participantIdentities}</div>
-
+            
+           {data.values.map(value => (
 
 
+            <p> {value.platformId} </p> 
+    
+          ))}
+  </div>
 
-    }        
-       
-  </div></div>
+      
+  </div>
+
+  );
+      }
+
+
+    return (
+     {datalist}
     );
   }
 
