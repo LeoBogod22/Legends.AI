@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Route, withRouter } from "react-router";
 const regions = [
   'NA',
-  'EUW',
+  'EUW1',
   'EUNE',
   'LAN',
   'LAS',
@@ -48,8 +48,8 @@ searchChampions(e) {
                                        champname:this.refs.query.value,
                                        region: this.state.region
     }).then((data)=>{
-           this.setState({data: data});
-           this.props.history.push(`/stats/${this.state.data}`)
+           this.setState({data: data.values});
+           this.props.history.push(`/stats/${this.state.name}`)
 
            console.log(this.state.data);
 
@@ -61,6 +61,7 @@ searchChampions(e) {
 
     return (
       <div id="input-box">
+  
         <input ref="query"
           id="summoner-name-input"
           placeholder="name"

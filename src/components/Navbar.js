@@ -15,7 +15,6 @@ import {
 } from 'reactstrap';
 import Search from './summoner/search';
 import { Redirect, Link } from 'react-router-dom';
-import Searchresults from './searchresults';
 import SearchBar from './common/SearchBar';
 import app from "../config/dev";
 import { Route, withRouter } from "react-router";
@@ -143,7 +142,6 @@ componentDidMount() {
     let content = null;
 
     if (content !== null) {
-      <Searchresults name={this.state.name} />
     }
 
     else {

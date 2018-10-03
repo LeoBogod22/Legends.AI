@@ -94,7 +94,7 @@ e.preventDefault();
     });
 
   app.auth().onAuthStateChanged((user) => {
-
+    if (user) {
         //this was the variable u were using and is undefined
       //this.props.location.state.car.id
         //alert("car has been saved!")
@@ -115,7 +115,7 @@ e.preventDefault();
  });
 
  });
- 
+ }
 
   });
   }

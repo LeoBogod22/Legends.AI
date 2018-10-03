@@ -72,6 +72,9 @@ class MatchUpCounterTips extends Component {
         //this was the variable u were using and is undefined
       //this.props.location.state.car.id
         //alert("car has been saved!")
+
+
+            if (user) {
         this.setState({email:user.email})
       
         const user_ID=  user.uid;
@@ -90,7 +93,7 @@ class MatchUpCounterTips extends Component {
 
  });
  
-
+}
   });
   }
 
