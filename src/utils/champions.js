@@ -32,7 +32,7 @@ export default [
       "attackspeedoffset": -0.04,
       "attackspeedperlevel": 3
     },
-    "icon": "http://ddragon.leagueoflegends.com/cdn/8.11.1/img/champion/Aatrox.png",
+    "icon": " http://www.stelar7.no/cdragon/latest/uncentered-splash-art/1/0.png",
     "sprite": {
       "url": "http://ddragon.leagueoflegends.com/cdn/8.11.1/img/sprite/champion0.png",
       "x": 0,
