@@ -94,10 +94,15 @@ let datalist;
   </section>
   <div className="col-12 col-lg-8 match-history"> 
           
- for (const key of Object.keys(data)) {
-console.log(key, data[key])
-}
-}
+{Object.keys(data).map((item, i) => (
+
+    <div className="card">
+    <li className="travelcompany-input" key={i}>
+        <div> data[item]</div>
+    </li>
+</div>
+
+))}
   </div>
 
       
