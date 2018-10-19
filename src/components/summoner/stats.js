@@ -47,7 +47,7 @@ componentDidMount() {
     })
   }
   render() {
-    const { selectedPath, loaded, data } = this.state;
+    const { selectedPath, loaded, data, data2 } = this.state;
 
 let datalist;
 
@@ -93,16 +93,13 @@ let datalist;
             
   </section>
   <div className="col-12 col-lg-8 match-history"> 
-          
-{Object.keys(data).map((item, i) => (
+{Object.keys(data2).forEach(function(key) {
+ 
 
-    <div className="card">
-    <li className="travelcompany-input" key={i}>
-        <div> data[item]</div>
-    </li>
-</div>
 
-))}
+
+ <div>Key: {key}, Value: {data2[key]}</div>
+})} 
   </div>
 
       
