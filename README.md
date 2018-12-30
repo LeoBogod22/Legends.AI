@@ -13,5 +13,4 @@ The site calculates a score for each champion by analyzing its average performan
 # Matchup Page 
 
 
-A custom matchup page where high elo players can write laning tips against a certain champions. 
 ![alt text](img.png)
