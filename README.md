@@ -10,3 +10,5 @@ The site calculates a score for each champion by analyzing its average performan
 
 
 ![alt text](image2.png)
+
+![alt text](img.png)
