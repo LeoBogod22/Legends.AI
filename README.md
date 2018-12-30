@@ -7,3 +7,6 @@
 
 The site calculates a score for each champion by analyzing its average performance across many ranked games, and determines which types of champions the rune is most effective on by finding patterns in performance between groups of similar champions.
 
+
+
+![alt text](images2.jpg)
